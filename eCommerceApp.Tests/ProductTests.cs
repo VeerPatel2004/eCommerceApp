@@ -50,6 +50,45 @@ namespace eCommerceApp.Tests
             Assert.Null(product.ProdName);
         }
 
+        // 🔹 Constructor Tests for ItemPrice
+        [Fact]
+        public void Constructor_ValidPrice_ShouldInitializeCorrectly()
+        {
+            var product = new Product(100, "Laptop", 500.50m, 10);
+            Assert.Equal(500.50m, product.ItemPrice);
+        }
+
+        [Fact]
+        public void Constructor_ItemPrice_BelowRange_ShouldThrowException()
+        {
+            Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 5m, 10));
+        }
+
+        [Fact]
+        public void Constructor_ItemPrice_AboveRange_ShouldThrowException()
+        {
+            Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 20000m, 10));
+        }
+
+        // 🔹 Constructor Tests for StockAmount
+        [Fact]
+        public void Constructor_ValidStockAmount_ShouldInitializeCorrectly()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            Assert.Equal(10, product.StockAmount);
+        }
+
+        [Fact]
+        public void Constructor_StockAmount_BelowRange_ShouldThrowException()
+        {
+            Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 0));
+        }
+
+        [Fact]
+        public void Constructor_StockAmount_AboveRange_ShouldThrowException()
+        {
+            Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 200000));
+        }
         
     }
 }
