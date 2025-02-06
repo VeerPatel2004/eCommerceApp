@@ -69,7 +69,7 @@ namespace eCommerceApp.Tests
         {
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 20000m, 10));
         }
-
+        
         // 🔹 Constructor Tests for StockAmount
         [Fact]
         public void Constructor_ValidStockAmount_ShouldInitializeCorrectly()
