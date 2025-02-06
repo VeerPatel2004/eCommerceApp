@@ -49,5 +49,7 @@ namespace eCommerceApp.Tests
             var product = new Product(100, null, 1500.99m, 10);
             Assert.Null(product.ProdName);
         }
+
+        
     }
 }
