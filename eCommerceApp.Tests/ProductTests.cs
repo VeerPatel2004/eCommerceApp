@@ -89,6 +89,53 @@ namespace eCommerceApp.Tests
         {
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 200000));
         }
-        
+
+        // IncreaseStock() Tests
+        [Fact]
+        public void IncreaseStock_ValidAmount_ShouldIncreaseStock()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            product.IncreaseStock(5);
+            Assert.Equal(15, product.StockAmount);
+        }
+
+        [Fact]
+        public void IncreaseStock_Zero_ShouldNotChangeStock()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            product.IncreaseStock(0);
+            Assert.Equal(10, product.StockAmount);
+        }
+
+        [Fact]
+        public void IncreaseStock_NegativeAmount_ShouldThrowException()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            Assert.Throws<ArgumentException>(() => product.IncreaseStock(-5));
+        }
+
+        // DecreaseStock() Tests
+        [Fact]
+        public void DecreaseStock_ValidAmount_ShouldDecreaseStock()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            product.DecreaseStock(5);
+            Assert.Equal(5, product.StockAmount);
+        }
+
+        [Fact]
+        public void DecreaseStock_StockBecomesZero_ShouldWork()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 5);
+            product.DecreaseStock(5);
+            Assert.Equal(0, product.StockAmount);
+        }
+
+        [Fact]
+        public void DecreaseStock_ExceedingStock_ShouldThrowException()
+        {
+            var product = new Product(100, "Laptop", 1500.99m, 10);
+            Assert.Throws<InvalidOperationException>(() => product.DecreaseStock(15));
+        }
     }
 }
