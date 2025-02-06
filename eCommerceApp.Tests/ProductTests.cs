@@ -83,7 +83,7 @@ namespace eCommerceApp.Tests
         {
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 0));
         }
-
+        
         [Fact]
         public void Constructor_StockAmount_AboveRange_ShouldThrowException()
         {
