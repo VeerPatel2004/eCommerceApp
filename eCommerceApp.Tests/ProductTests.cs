@@ -8,45 +8,67 @@ namespace eCommerceApp.Tests
 {
     public class ProductTests
     {
-        // Constructor Tests for ProdID
+        // ======================
+        // Tests by Veer Patel
+        // ======================
+        // This test verifies that a valid product ID is properly initialized.
         [Fact]
         public void Constructor_ValidProdID_ShouldInitializeCorrectly()
         {
+            // Arrange & Act
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            
+            // Assert
             Assert.Equal(100, product.ProdID);
         }
 
+        // This test checks if an exception is thrown for a product ID below the valid range.
         [Fact]
         public void Constructor_ProdID_BelowRange_ShouldThrowException()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() => new Product(5, "Laptop", 1500.99m, 10));
         }
 
+        // This test checks if an exception is thrown for a product ID above the valid range.
         [Fact]
         public void Constructor_ProdID_AboveRange_ShouldThrowException()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentException>(() => new Product(100001, "Laptop", 1500.99m, 10));
         }
 
         // Constructor Tests for ProdName
+        // This test verifies that a valid product name is correctly initialized.
         [Fact]
         public void Constructor_ValidProdName_ShouldInitializeCorrectly()
         {
+            // Arrange 
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            
+            // Act & Assert
             Assert.Equal("Laptop", product.ProdName);
         }
 
+        // This test ensures that an empty product name is properly initialized.
         [Fact]
         public void Constructor_ProdName_EmptyString_ShouldInitialize()
         {
+            // Arrange & Act
             var product = new Product(100, "", 1500.99m, 10);
+            
+            // Assert
             Assert.Equal("", product.ProdName);
-        }  
-        
+        }
+
+        // This test verifies that a null product name is properly initialized.
         [Fact] 
         public void Constructor_ProdName_Null_ShouldInitialize()
         {
+            // Arrange & Act
             var product = new Product(100, null, 1500.99m, 10);
+            
+            // Assert
             Assert.Null(product.ProdName);
         }
 
