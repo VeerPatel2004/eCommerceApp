@@ -71,48 +71,60 @@ namespace eCommerceApp.Tests
             // Assert
             Assert.Null(product.ProdName);
         }
-
-        // 🔹 Constructor Tests for ItemPrice
+         //============================
+        // Tests by Darsan Sabu George 
+        // ============================
+        //  Constructor for testsing ItemPrice 
+        // This test verifies that a valid price is correctly initialized.
         [Fact]
         public void Constructor_ValidPrice_ShouldInitializeCorrectly()
         {
+             // Arrange & Act
             var product = new Product(100, "Laptop", 500.50m, 10);
+              // Assert
             Assert.Equal(500.50m, product.ItemPrice);
         }
 
-        [Fact]
+        [Fact] // This test ensures that an exception is thrown when the item price is below the valid range.
         public void Constructor_ItemPrice_BelowRange_ShouldThrowException()
         {
+             // Arrange, Act and Assert
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 5m, 10));
         }
 
-        [Fact]
+        [Fact] // This test ensures that an exception is thrown when the item price is above the valid range.
         public void Constructor_ItemPrice_AboveRange_ShouldThrowException()
         {
+              // Arrange, Act and Assert
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 20000m, 10));
         }
         
-        // 🔹 Constructor Tests for StockAmount
+        // Constructor Tests for StockAmount
+        // This test verifies that a valid stock amount is correctly initialized.
         [Fact]
         public void Constructor_ValidStockAmount_ShouldInitializeCorrectly()
         {
+            // Arrange & Act   
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            // Assert
             Assert.Equal(10, product.StockAmount);
         }
-
+        // This test ensures that an exception is thrown when the stock amount is below the valid range.
         [Fact]
         public void Constructor_StockAmount_BelowRange_ShouldThrowException()
         {
+             // Arrange, Act and Assert
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 0));
         }
-        
+         // This test ensures that an exception is thrown when the stock amount is above the valid range.
         [Fact]
         public void Constructor_StockAmount_AboveRange_ShouldThrowException()
         {
+             // Arrange, Act and Assert
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 200000));
         }
 
-        // IncreaseStock() Tests
+        // Unitest for IncreaseStock() function 
         [Fact]
         public void IncreaseStock_ValidAmount_ShouldIncreaseStock()
         {
