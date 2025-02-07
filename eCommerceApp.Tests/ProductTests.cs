@@ -123,52 +123,83 @@ namespace eCommerceApp.Tests
              // Arrange, Act and Assert
             Assert.Throws<ArgumentException>(() => new Product(100, "Laptop", 1500.99m, 200000));
         }
+        
+        //====================================
+        //Test By Nandhu krishna Rajendran
+        //======================================
 
-        // Unitest for IncreaseStock() function 
+        // IncreaseStock() Tests
+
+         // Test to verify that increasing stock by a valid positive amount works correctly
         [Fact]
         public void IncreaseStock_ValidAmount_ShouldIncreaseStock()
         {
+            // Arrange: Create a product with an initial stock of 10
             var product = new Product(100, "Laptop", 1500.99m, 10);
+             // Act: Increase the stock by 5
             product.IncreaseStock(5);
+            // Assert: Verify that the stock has increased to 15
             Assert.Equal(15, product.StockAmount);
         }
 
+        // Test to verify that increasing stock by zero does not change the stock amount
         [Fact]
         public void IncreaseStock_Zero_ShouldNotChangeStock()
         {
+            // Arrange: Create a product with an initial stock of 10
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            // Act: Attempt to increase the stock by 0
             product.IncreaseStock(0);
+             // Assert: Verify that the stock remains unchanged at 10
             Assert.Equal(10, product.StockAmount);
         }
+
+        // Test to verify that increasing stock by a negative amount throws an ArgumentException
 
         [Fact]
         public void IncreaseStock_NegativeAmount_ShouldThrowException()
         {
+             // Arrange: Create a product with an initial stock of 10
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            // Act & Assert: Verify that increasing stock with a negative value throws an exception
             Assert.Throws<ArgumentException>(() => product.IncreaseStock(-5));
         }
 
         // DecreaseStock() Tests
+
+        // Test to verify that decreasing stock by a valid amount reduces the stock correctly
         [Fact]
         public void DecreaseStock_ValidAmount_ShouldDecreaseStock()
         {
+            // Arrange: Create a product with an initial stock of 10
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            // Act: Decrease the stock by 5
             product.DecreaseStock(5);
+            // Assert: Verify that the stock has decreased to 5
             Assert.Equal(5, product.StockAmount);
         }
+
+        // Test to verify that decreasing stock to exactly zero works as expected
 
         [Fact]
         public void DecreaseStock_StockBecomesZero_ShouldWork()
         {
+            // Arrange: Create a product with an initial stock of 5
             var product = new Product(100, "Laptop", 1500.99m, 5);
+            // Act: Decrease the stock by 5, reducing it to zero
             product.DecreaseStock(5);
+            // Assert: Verify that the stock is now zero
             Assert.Equal(0, product.StockAmount);
         }
+
+        // Test to verify that decreasing stock by more than the available amount throws an InvalidOperationException
 
         [Fact]
         public void DecreaseStock_ExceedingStock_ShouldThrowException()
         {
+            // Arrange: Create a product with an initial stock of 10
             var product = new Product(100, "Laptop", 1500.99m, 10);
+            // Act & Assert: Verify that attempting to decrease stock by more than available throws an exception
             Assert.Throws<InvalidOperationException>(() => product.DecreaseStock(15));
         }
     }
